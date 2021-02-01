@@ -38,6 +38,7 @@ historical archival.
      use Crawly.Spider
      
      alias Crawly.Utils
+     alias Crawly.ParsedItem
 
      @impl Crawly.Spider
      def base_url(), do: "https://www.erlang-solutions.com"
@@ -56,7 +57,7 @@ historical archival.
 
        title = document |> Floki.find("article.blog_post h1") |> Floki.text()
 
-       %{
+       %ParsedItem{
          :requests => requests,
          :items => [%{title: title, url: response.request_url}]
        }
